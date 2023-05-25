@@ -1,0 +1,9 @@
+#defaultView:Map
+
+#Porte di Milano
+SELECT ?gate ?coords where {
+  # Instances of city gate located within any of the municipalities
+  ?gate wdt:P31 wd:Q82117;
+        wdt:P131 wd:Q490.
+  ?gate wdt:P625 ?coords . # coordinates of gate
+}

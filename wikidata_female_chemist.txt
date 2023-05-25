@@ -1,0 +1,13 @@
+#defaultView:Timeline
+
+# select female chemist
+SELECT ?person ?personLabel ?image ?date_of_birth ?birth_placeLabel ?coords
+WHERE {
+  ?person wdt:P106 wd:Q593644 . # occupation chemist
+  ?person wdt:P21 wd:Q6581072 .# gender female
+  OPTIONAL { ?person wdt:P18 ?image } # image
+  OPTIONAL { ?person wdt:P569 ?date_of_birth } . # date of birth
+  ?person wdt:P19 ?birth_place . # birth place
+    ?birth_place wdt:P625 ?coords . # coordinates of birthplace
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+} ORDER BY DESC(?date_of_birth)
