@@ -1,0 +1,33 @@
+SELECT ?politician ?politicianLabel 
+       (GROUP_CONCAT(DISTINCT ?partyLabel; separator=", ") as ?parties) 
+       (COUNT(DISTINCT ?children) as ?numero_di_figli_in_politica) 
+       (GROUP_CONCAT(DISTINCT ?childrenLabel; separator=", ") as ?figli) 
+       (GROUP_CONCAT(DISTINCT ?childrenPartyLabel; separator=", ") as ?partiti_figli)
+WHERE {
+  {
+    SELECT ?politician ?politicianLabel ?children ?childrenLabel ?childrenPartyLabel ?partyLabel
+    WHERE {
+      ?politician wdt:P27 wd:Q38;   # Citizenship is Italy
+                  wdt:P106 wd:Q82955; # Occupation is politician
+                  wdt:P102 ?party.
+      ?politician wdt:P40 ?children.  # Is a child
+      ?children wdt:P102 ?childrenParty.
+      
+      OPTIONAL { ?politician wdt:P570 ?deathDate. }  # Optional statement to retrieve death date
+      OPTIONAL { ?children wdt:P570 ?deathDateChildren. }  # Optional statement to retrieve death date
+      
+      FILTER (!bound(?deathDate))  # Exclude items with a death date (P570)
+      FILTER (!bound(?deathDateChildren))  # Exclude items with a death date (P570)
+      
+      SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+        ?party rdfs:label ?partyLabel.
+        ?childrenParty rdfs:label ?childrenPartyLabel.
+        ?politician rdfs:label ?politicianLabel.
+        ?children rdfs:label ?childrenLabel.
+      }
+    }
+  }
+}
+GROUP BY ?politician ?politicianLabel
+ORDER BY DESC(?numero_di_figli_in_politica)
