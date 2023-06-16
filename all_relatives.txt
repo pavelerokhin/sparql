@@ -1,0 +1,45 @@
+SELECT ?personLabel 
+       (GROUP_CONCAT(DISTINCT ?fatherLabel; separator=", ") as ?fathers)
+	   (GROUP_CONCAT(DISTINCT ?motherLabel; separator=", ") as ?mothers)
+       (GROUP_CONCAT(DISTINCT ?brotherLabel; separator=", ") as ?brothers)
+	   (GROUP_CONCAT(DISTINCT ?sisterLabel; separator=", ") as ?sisters)
+	   (GROUP_CONCAT(DISTINCT ?spouseLabel; separator=", ") as ?spouses)
+	   (GROUP_CONCAT(DISTINCT ?uncleLabel; separator=", ") as ?uncles)
+	   (GROUP_CONCAT(DISTINCT ?childLabel; separator=", ") as ?children)
+	   (GROUP_CONCAT(DISTINCT ?stepfatherLabel; separator=", ") as ?stepfathers)
+	   (GROUP_CONCAT(DISTINCT ?stepmotherLabel; separator=", ") as ?stepmothers)
+	   (GROUP_CONCAT(DISTINCT ?grandparentLabel; separator=", ") as ?grandparents)
+	   (GROUP_CONCAT(DISTINCT ?auntLabel; separator=", ") as ?aunts)
+WHERE {
+    ?person wdt:P106 wd:Q49757 ; # profession poet
+            wdt:P27 wd:Q38 .     # citizenship Italy
+  
+    OPTIONAL{ ?person wdt:P22 ?father . }
+    OPTIONAL{ ?person wdt:P25 ?mother . }
+    OPTIONAL{ ?person wdt:P7 ?brother . }
+	OPTIONAL{ ?person wdt:P9 ?sister . }
+	OPTIONAL{ ?person wdt:P26 ?spouse . }
+	OPTIONAL{ ?person wdt:P29 ?uncle . }
+	OPTIONAL{ ?person wdt:P40 ?child . }
+	OPTIONAL{ ?person wdt:P43 ?stepfather . }
+	OPTIONAL{ ?person wdt:P44 ?stepmother . }
+	OPTIONAL{ ?person wdt:P45 ?grandparent . }
+	OPTIONAL{ ?person wdt:P139 ?aunt . }
+  
+    SERVICE wikibase:label { 
+      bd:serviceParam wikibase:language "en" .
+      ?person rdfs:label ?personLabel .
+      ?father rdfs:label ?fatherLabel .
+      ?mother rdfs:label ?motherLabel .
+      ?brother rdfs:label ?brotherLabel .
+      ?sister rdfs:label ?sisterLabel .
+      ?spouse rdfs:label ?spouseLabel .
+      ?uncle rdfs:label ?uncleLabel .
+      ?child rdfs:label ?childLabel .
+      ?stepfather rdfs:label ?stepfatherLabel .
+      ?stepmother rdfs:label ?stepmotherLabel .
+      ?grandparent rdfs:label ?grandparentLabel .
+      ?aunt rdfs:label ?auntLabel .
+    }
+}
+GROUP BY ?personLabel
