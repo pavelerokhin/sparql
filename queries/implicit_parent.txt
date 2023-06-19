@@ -1,0 +1,16 @@
+SELECT * WHERE {
+  ?one wdt:P27 wd:Q38;
+       wdt:P106 wd:Q82955; # Occupation is politician
+       wdt:P22 ?father.
+  
+  ?another wdt:P27 wd:Q38;
+           wdt:P106 wd:Q82955; # Occupation is politician
+           wdt:P22 ?father.
+  
+  FILTER (?one != ?another)
+       
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+    # ?childrenParty rdfs:label ?childrenPartyLabel.
+  }
+}
