@@ -1,24 +1,20 @@
-SELECT ?personLabel ?number_of_children WHERE {
+SELECT ?personLabel (COUNT(?child) AS ?number_of_children) WHERE {
+  ?person wdt:P106 wd:Q49757;
+    wdt:P27 wd:Q29;
+    wdt:P40 ?child.
   {
-    SELECT ?person ?max (COUNT(?child) AS ?number_of_children) WHERE {
-      ?person wdt:P106 wd:Q49757;
-        wdt:P27 wd:Q29;
-        wdt:P40 ?child.
+    SELECT (MAX(?number_of_children) AS ?max) WHERE {
       {
-        SELECT (MAX(?number_of_children) AS ?max) WHERE {
-          {
-            SELECT ?person (COUNT(?child) AS ?number_of_children) WHERE {
-              ?person wdt:P106 wd:Q49757;
-                wdt:P27 wd:Q29;
-                wdt:P40 ?child.
-            }
-            GROUP BY ?person
-          }
+        SELECT ?person (COUNT(?child) AS ?number_of_children) WHERE {
+          ?person wdt:P106 wd:Q49757;
+            wdt:P27 wd:Q29;
+            wdt:P40 ?child.
         }
+        GROUP BY ?person
       }
     }
-    GROUP BY ?person ?max
   }
-  FILTER(?number_of_children = ?max)
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
+GROUP BY ?personLabel ?max
+HAVING (COUNT(?child) = ?max)
