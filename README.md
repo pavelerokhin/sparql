@@ -8,3 +8,4 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/)
 - study on italian politicians `politicians.txt`
 - Italian poets' family structure `all_relatives.txt`
 - spanish poets with max number of children `spanish_poet_with_max_number_of_children.txt`
+- spanish poets with max number of children (using `HAVING` keyword) `spanish_poet_with_max_number_of_children2.txt`
