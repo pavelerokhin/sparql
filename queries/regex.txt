@@ -1,0 +1,13 @@
+# Names of human settlements ending in "-ow" or "-itz" in Germany
+#defaultView:Map
+SELECT DISTINCT ?item ?itemLabel ?coord
+WHERE 
+{
+   ?item wdt:P31/wdt:P279* wd:Q486972;   # instance/subclass of human settlement
+         wdt:P17 wd:Q183;                # Germany
+         rdfs:label ?itemLabel;
+         wdt:P625 ?coord;
+   FILTER (LANG(?itemLabel) = "de"). 
+   FILTER REGEX (?itemLabel, "(ow|itz)$").
+}
+LIMIT 1000
