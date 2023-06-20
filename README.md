@@ -13,7 +13,7 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/)
 - siblings of Bach [source](https://en.wikibooks.org/wiki/SPARQL/Property_paths#:~:text=of%20this%20element-,Inverse,-link%5Bedit) at `siblings.txt`,
 - implicit vs. explicit siblings of italian politicians as `politicians_implicit_siblings.txt`. By implicit sibling I mean a subject that has the same parent, but it is not explicitely represented on Wiki. I compare lists of implicit and explicit siblings,
 - `politicians_subclasses.txt` the SPARQL statement queries for items that have a "subclass of" relationship (direct or indirect) with the occupation or profession represented by wd:Q82955 (politician). In other words, it retrieves all the items that are either instances of Q82955 or instances of its subclasses based on the "subclass of" relationships defined in Wikidata,
-- we can use BIND function for better query reading `bind_for_better_reading.txt`;
+- we can use BIND function for better query reading `bind_for_better_reading.txt` [source](https://en.wikibooks.org/wiki/SPARQL/Expressions_and_Functions#:~:text=For%20example%2C%20a%20query%20that%20finds%20all%20female%20priests);
 
 Jupyter `notebooks`
 
