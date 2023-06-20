@@ -1,0 +1,43 @@
+# with /wdt:P279* returns 7054, without returns 6903
+SELECT ?politician ?politicianLabel WHERE {
+  {
+    SELECT ?politician ?politicianLabel WHERE {
+      ?politician wdt:P27 wd:Q38;
+        wdt:P106/wdt:P279* wd:Q82955. # select occupation and all the classes beyond
+                  
+      OPTIONAL { ?politician wdt:P570 ?deathDate. }
+      FILTER(!(BOUND(?deathDate)))
+
+      SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+        ?politician rdfs:label ?politicianLabel.
+      }
+    }
+  }
+}
+GROUP BY ?politician ?politicianLabel
+
+
+# let's study the difference and find the type of "occupation" subclass. It returns 151 items, some of them are magistrates
+SELECT ?politician ?politicianLabel WHERE {
+  {
+    SELECT ?politician WHERE {
+      ?politician wdt:P27 wd:Q38;
+        (wdt:P106/(wdt:P279*)) wd:Q82955.
+      OPTIONAL { ?politician wdt:P570 ?deathDate. }
+      FILTER(!(BOUND(?deathDate)))
+    }
+  }
+  MINUS {
+    SELECT ?politician WHERE {
+      ?politician wdt:P27 wd:Q38;
+        wdt:P106 wd:Q82955.
+      OPTIONAL { ?politician wdt:P570 ?deathDate. }
+      FILTER(!(BOUND(?deathDate)))
+    }
+  }
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+    ?politician rdfs:label ?politicianLabel.
+  }
+}
