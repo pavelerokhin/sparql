@@ -1,0 +1,7 @@
+SELECT ?country ?capital WHERE {
+     VALUES ( ?country ?capital ) { 
+            ( "United Kingdom" "London" )
+            ( "France"         "Paris"  )
+            ( "Etc"            UNDEF    ) # Use UNDEF for an undefined value
+            }
+}

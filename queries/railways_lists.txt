@@ -1,0 +1,11 @@
+#defaultView:Map
+
+# Railway stations in London or Paris
+SELECT ?cityLabel ?station ?stationLabel ?location 
+WHERE {
+  ?station wdt:P31 wd:Q55488.         # is a railway station
+  ?station wdt:P131 ?city.
+  ?station wdt:P625  ?location
+  FILTER( ?city IN(wd:Q84, wd:Q90) ). # in London or Paris
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,fr". }
+}
