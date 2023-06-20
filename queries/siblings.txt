@@ -1,0 +1,7 @@
+SELECT ?sibling ?siblingLabel
+WHERE
+{
+  # Bach   father/has father sibling
+  wd:Q1339 wdt:P22/^wdt:P22 ?sibling. # ^ = Inverse link
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
