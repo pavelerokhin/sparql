@@ -8,10 +8,10 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/)
 - study on italian politicians `politicians.txt`,
 - Italian poets' family structure `all_relatives.txt`,
 - spanish poets with max number of children `spanish_poet_with_max_number_of_children.txt`,
-- spanish poets with max numb[README.md](README.md)er of children (using `HAVING` keyword) `spanish_poet_with_max_number_of_children2.txt`;
+- spanish poets with max number of children (using `HAVING` keyword) `spanish_poet_with_max_number_of_children2.txt`,
 - search for the same parent but implicit parent `implicit_parent.txt`;
-- siblings of Bach in `siblings.txt` [source](https://en.wikibooks.org/wiki/SPARQL/Property_paths#:~:text=of%20this%20element-,Inverse,-link%5Bedit)
-
+- siblings of Bach [source](https://en.wikibooks.org/wiki/SPARQL/Property_paths#:~:text=of%20this%20element-,Inverse,-link%5Bedit) at `siblings.txt`,
+- implicit vs. explicit siblings of italian politicians as `politicians_implicit_siblings.txt`. By implicit sibling I mean a subject that has the same parent, but it is not explicitely represented on Wiki. I compare lists of implicit and explicit siblings;
 
 Jupyter `notebooks`
 
