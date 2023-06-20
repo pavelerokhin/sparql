@@ -1,0 +1,18 @@
+SELECT ?one ?oneLabel (GROUP_CONCAT(?siblingLabel; SEPARATOR = ", ") AS ?siblings) (COUNT(?siblingLabel) AS ?count) (GROUP_CONCAT(?explicitSiblingLabel; SEPARATOR = ", ") AS ?explicit_siblings) (COUNT(?explicitSiblingLabel) AS ?explicit_count) WHERE {
+  ?one wdt:P27 wd:Q38;
+    wdt:P106 wd:Q82955.
+  MINUS { ?one wdt:P570 ?deathDate. }
+  
+  OPTIONAL { ?one (wdt:P22/^wdt:P22) ?sibling. }
+  OPTIONAL { ?one wdt:P7|wdt:P9 ?explicitSibling. }
+  
+  FILTER (BOUND(?sibling) || BOUND(?explicitSibling))
+  
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en".
+    ?one rdfs:label ?oneLabel.
+    ?sibling rdfs:label ?siblingLabel.
+    ?explicitSibling rdfs:label ?explicitSiblingLabel.
+  }
+}
+GROUP BY ?one ?oneLabel
