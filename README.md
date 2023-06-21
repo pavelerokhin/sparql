@@ -21,8 +21,6 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
 
 Jupyter `notebooks`:
 
-- `biggest_cities_population.ipynb` following the [tutorial](https://max-coding.medium.com/extract-structured-data-from-wikidata-using-python-and-sparql-query-987c3bff97be),
-
-Using mkwikidata and pandas, we extract and plot the most significant cities by population,
+- `biggest_cities_population.ipynb` following the [tutorial](https://max-coding.medium.com/extract-structured-data-from-wikidata-using-python-and-sparql-query-987c3bff97be), Using `mkwikidata` and pandas, we extract and plot the most significant cities by population,
 
 - `politicians.ipynb`: the same code as above, using `politicians.txt` query.
