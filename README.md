@@ -6,6 +6,7 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
 - `parentela` folder:
 
   - `all_relatives.txt`: This query retrieves information about a person's familial relationships. It includes the person's label, their fathers, mothers, brothers, sisters, spouses, uncles, children, stepfathers, stepmothers, grandparents, and aunts,
+  - `denasty.txt` This SPARQL query retrieves information about musicians from Italy who have musician parents. It calculates the number of generations of musicians within their family.
   - `implicit_father.txt`: This query retrieves pairs of politicians from Italy who have the same father,
   - `siblings.txt` : This SPARQL query retrieves the siblings of Johann Sebastian Bach, who are the father's siblings,
   - `spanish_poet_with_max_number_of_children.txt`: This query retrieves a list of Spanish poets with the maximum number of children among all Spanish poets,
