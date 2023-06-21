@@ -1,0 +1,35 @@
+SELECT ?iri ?musician ?fathersMusicians ?mothersMusicians ?denastyLength WHERE {
+  {
+    SELECT (?subject AS ?iri) (?subjectLabel AS ?musician) (GROUP_CONCAT(DISTINCT ?fatherLabel; SEPARATOR = ", ") AS ?fathersMusicians) (GROUP_CONCAT(DISTINCT ?motherLabel; SEPARATOR = ", ") AS ?mothersMusicians) WHERE {
+      ?subject wdt:P27 wd:Q38;
+        (wdt:P106/(wdt:P279*)) wd:Q639669.
+      OPTIONAL {
+        ?subject (wdt:P22+) ?father.
+        ?father (wdt:P106/(wdt:P279*)) wd:Q639669.
+        SERVICE wikibase:label {
+          bd:serviceParam wikibase:language "en".
+          ?father rdfs:label ?fatherLabel.
+        }
+      }
+      OPTIONAL {
+        ?subject (wdt:P25+) ?mother.
+        ?mother (wdt:P106/(wdt:P279*)) wd:Q639669.
+        SERVICE wikibase:label {
+          bd:serviceParam wikibase:language "en".
+          ?mother rdfs:label ?motherLabel.
+        }
+      }
+      FILTER((BOUND(?father)) || (BOUND(?mather)))
+      SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en".
+        ?subject rdfs:label ?subjectLabel.
+        ?ancestors rdfs:label ?ancestorsLabel.
+      }
+    }
+    GROUP BY ?subject ?subjectLabel
+  }
+  BIND((STRLEN(?fathersMusicians)) - (STRLEN(REPLACE(?fathersMusicians, ",", ""))) AS ?denastyLength1)
+  BIND((STRLEN(?mothersMusicians)) - (STRLEN(REPLACE(?mothersMusicians, ",", ""))) AS ?denastyLength2)
+  BIND(IF(?denastyLength1 > ?denastyLength2, ?denastyLength1+2, ?denastyLength2+2) AS ?denastyLength)
+}
+ORDER BY DESC(?denastyLength)
