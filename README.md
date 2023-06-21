@@ -7,7 +7,7 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
 
   - `all_relatives.txt`: This query retrieves information about a person's familial relationships. It includes the person's label, their fathers, mothers, brothers, sisters, spouses, uncles, children, stepfathers, stepmothers, grandparents, and aunts,
   - `implicit_father.txt`: This query retrieves pairs of politicians from Italy who have the same father,
-  - `siblings.txt` : This SPARQL query retrieves the siblings of Johann Sebastian Bach, who are the father's siblings,
+  - `siblings.txt`: This SPARQL query retrieves the siblings of Johann Sebastian Bach, who are the father's siblings,
   - `spanish_poet_with_max_number_of_children.txt`: This query retrieves a list of Spanish poets with the maximum number of children among all Spanish poets,
   - `spanish_poet_with_max_number_of_children2.txt`: same topic, another syntax;
 
@@ -17,7 +17,7 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
   - `politicians_implicit_siblings.txt`: This query retrieves information about Italian politicians' explicit siblings,
   - `politicians_subclasses.txt`: The SPARQL queries for items that have a "subclass of" relationship (direct or indirect) with the occupation or profession represented by wd:Q82955 (politician). In other words, it retrieves all the items that are either instances of Q82955 or instances of its subclasses based on the "subclass of" relationships defined in Wikidata;
 
-- `sendbox` folder contains various SPARQL query examples.
+- `sandbox` folder contains various SPARQL query examples.
 
 Jupyter `notebooks`:
 
