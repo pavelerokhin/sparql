@@ -16,3 +16,4 @@ SELECT ?subject ?subjectLabel (GROUP_CONCAT(?siblingLabel; SEPARATOR = ", ") AS 
   }
 }
 GROUP BY ?subject ?subjectLabel
+ORDER BY ?subjectLabel

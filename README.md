@@ -7,7 +7,7 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
 
   - `explicit_dynasty.txt` This SPARQL query retrieves information about musicians from Italy who have musician parents. It calculates the number of generations of musicians within their family,
   - `explicit_relatives.txt`: This query retrieves information about a person's familial relationships. It includes the person's label, their fathers, mothers, brothers, sisters, spouses, uncles, children, stepfathers, stepmothers, grandparents, and aunts,
-  - `implicit_father.txt` [Try!](https://w.wiki/6rvh): This query retrieves pairs of politicians from Italy who have the same father,
+  - `implicit_father.txt` [Try!](https://w.wiki/6rwh): This query retrieves pairs of politicians from Italy who have the same father,
   - `siblings_bach.txt`: This SPARQL query retrieves the siblings of Johann Sebastian Bach, who are the father's siblings,
   - `spanish_poet_with_max_number_of_children.txt`: This query retrieves a list of Spanish poets with the maximum number of children among all Spanish poets,
   - `spanish_poet_with_max_number_of_children2.txt`: same topic, another syntax;
