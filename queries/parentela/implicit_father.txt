@@ -7,6 +7,14 @@ SELECT (?oneLabel AS ?subject) (GROUP_CONCAT(DISTINCT ?twoLabel; separator=",") 
            wdt:P106 wd:Q82955; # Occupation is politician
            wdt:P22 ?father.
   
+  OPTIONAL {
+    ?father wdt:P40 ?one
+  }
+
+  OPTIONAL {
+    ?father wdt:P40 ?two
+  }
+
   FILTER (?one != ?two)
        
   SERVICE wikibase:label {
