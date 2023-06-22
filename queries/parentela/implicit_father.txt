@@ -1,16 +1,27 @@
-SELECT * WHERE {
+SELECT (?oneLabel AS ?subject) (GROUP_CONCAT(DISTINCT ?twoLabel; separator=",") AS ?siblings) (GROUP_CONCAT(DISTINCT ?fatherLabel; separator=",") AS ?fathers) WHERE {
   ?one wdt:P27 wd:Q38;
        wdt:P106 wd:Q82955; # Occupation is politician
        wdt:P22 ?father.
   
-  ?another wdt:P27 wd:Q38;
+  ?two wdt:P27 wd:Q38;
            wdt:P106 wd:Q82955; # Occupation is politician
            wdt:P22 ?father.
   
-  FILTER (?one != ?another)
+  OPTIONAL {
+    ?father wdt:P40 ?one
+  }
+
+  OPTIONAL {
+    ?father wdt:P40 ?two
+  }
+
+  FILTER (?one != ?two)
        
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
-    # ?childrenParty rdfs:label ?childrenPartyLabel.
+    ?father rdfs:label ?fatherLabel.
+    ?one rdfs:label ?oneLabel.
+    ?two rdfs:label ?twoLabel.
   }
 }
+GROUP BY ?oneLabel
