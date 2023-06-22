@@ -1,4 +1,4 @@
-SELECT * WHERE {
+SELECT ?oneLabel AS ?sibbling_one ? another AS ?sibbling_two ?fatherLabel WHERE {
   ?one wdt:P27 wd:Q38;
        wdt:P106 wd:Q82955; # Occupation is politician
        wdt:P22 ?father.
@@ -11,6 +11,5 @@ SELECT * WHERE {
        
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
-    # ?childrenParty rdfs:label ?childrenPartyLabel.
   }
 }

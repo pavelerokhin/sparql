@@ -1,0 +1,16 @@
+SELECT ?woman ?womanLabel
+WHERE
+{
+  ?woman ?instanceOf ?human;
+         ?sexOrGender ?female;
+         ?occupation ?priest.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+
+  # linking to wikidata Q and P codes
+  BIND(wdt:P31 AS ?instanceOf).
+  BIND(wd:Q5 AS ?human).
+  BIND(wdt:P21 AS ?sexOrGender).
+  BIND(wd:Q6581072 AS ?female).
+  BIND(wdt:P106 AS ?occupation).
+  BIND(wd:Q42603 AS ?priest).
+}
