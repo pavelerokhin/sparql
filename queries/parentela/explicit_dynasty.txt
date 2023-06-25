@@ -1,6 +1,6 @@
 SELECT ?iri ?musician ?fathersMusicians ?mothersMusicians ?denastyLength WHERE {
   {
-    SELECT (?subject AS ?iri) (?subjectLabel AS ?musician) (GROUP_CONCAT(DISTINCT ?fatherLabel; SEPARATOR = ", ") AS ?fathersMusicians) (GROUP_CONCAT(DISTINCT ?motherLabel; SEPARATOR = ", ") AS ?mothersMusicians) WHERE {
+    SELECT (?subject AS ?iri) (?subjectLabel AS ?musician) (GROUP_CONCAT(DISTINCT ?fatherLabel; SEPARATOR = ", ") AS ?fathersMusicians) (GROUP_CONCAT(DISTINCT ?motherLabel; SEPARATOR = " || ") AS ?mothersMusicians) WHERE {
       ?subject wdt:P27 wd:Q38;
         (wdt:P106/(wdt:P279*)) wd:Q639669.
       OPTIONAL {
@@ -28,8 +28,7 @@ SELECT ?iri ?musician ?fathersMusicians ?mothersMusicians ?denastyLength WHERE {
     }
     GROUP BY ?subject ?subjectLabel
   }
-  BIND((STRLEN(?fathersMusicians)) - (STRLEN(REPLACE(?fathersMusicians, ",", ""))) AS ?denastyLength1)
-  BIND((STRLEN(?mothersMusicians)) - (STRLEN(REPLACE(?mothersMusicians, ",", ""))) AS ?denastyLength2)
+  BIND((STRLEN(?fathersMusicians)) - (STRLEN(REPLACE(?fathersMusicians, " || ", ""))) AS ?denastyLength1)
+  BIND((STRLEN(?mothersMusicians)) - (STRLEN(REPLACE(?mothersMusicians, " || ", ""))) AS ?denastyLength2)
   BIND(IF(?denastyLength1 > ?denastyLength2, ?denastyLength1+2, ?denastyLength2+2) AS ?denastyLength)
-}
-ORDER BY DESC(?denastyLength)
+  }
