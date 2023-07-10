@@ -1,0 +1,12 @@
+SELECT DISTINCT ?item ?itemLabel ?classNameLabel
+WHERE {
+ ?item wdt:P31/wdt:P279* wd:Q3918 .
+ ?item wdt:P17 wd:Q38 . 
+  
+ ?item wdt:P31+ ?className
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". 
+        ?item rdfs:label ?itemLabel.
+        ?className rdfs:label ?classNameLabel.
+  }
+}
