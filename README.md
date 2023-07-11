@@ -18,6 +18,10 @@ Check out the queries on [WikiData Query Endpoint](https://query.wikidata.org/):
   - `politicians_implicit_siblings.txt`: This query retrieves information about Italian politicians' explicit siblings,
   - `politicians_subclasses.txt`: The SPARQL queries for items that have a "subclass of" relationship (direct or indirect) with the occupation or profession represented by wd:Q82955 (politician). In other words, it retrieves all the items that are either instances of Q82955 or instances of its subclasses based on the "subclass of" relationships defined in Wikidata;
 
+- `universities`:
+
+  - `italian_universities.txt`: This SPARQL query retrieves universities in Italy along with their respective websites and classifications.
+
 - `sandbox` folder contains various SPARQL query examples.
 
 Jupyter `notebooks`:
